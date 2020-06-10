@@ -17,6 +17,12 @@
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 
+#ifdef PLAN9
+#define DEFPATH "/sys/lib/gnu/awk"
+#include <string.h>
+#include <awk.h>
+#endif
+
 #ifdef __CYGWIN__
 #include <stdio.h>
 #include <windows.h>

@@ -24,6 +24,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
  */
 
+#if defined PLAN9
+#define sockaddr_storage sockaddr
+#endif
+
 /* For OSF/1 to get struct sockaddr_storage */
 #if defined(__osf__) && !defined(_OSF_SOURCE)
 #define _OSF_SOURCE

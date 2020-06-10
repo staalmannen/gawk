@@ -1202,8 +1202,8 @@ out0:
 			 * Use snprintf return value to tell if there
 			 * is enough room in the buffer or not.
 			 */
-			while ((i = snprintf(cpbufs[1].buf,
-					     cpbufs[1].bufsize, "%.0f",
+			while ((i = snprintf((char *) cpbufs[1].buf,
+					     (size_t) cpbufs[1].bufsize, (const char *) "%.0f",
 					     tmpval)) >=
 			       cpbufs[1].bufsize) {
 				if (cpbufs[1].buf == cpbufs[1].stackbuf)

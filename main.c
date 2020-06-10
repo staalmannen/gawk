@@ -24,6 +24,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
  */
 
+#if defined PLAN9
+#include <limits.h> /*NGROUPS_MAX*/
+#include "config.h"
+#endif
+
 /* FIX THIS BEFORE EVERY RELEASE: */
 #define UPDATE_YEAR	2020
 
