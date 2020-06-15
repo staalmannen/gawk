@@ -3,7 +3,7 @@
 TARG=gawk
 
 OFILES=\
-#gawk/
+#gawk/ \
 	array.$O \
 	builtin.$O \
 	cint_array.$O \
@@ -26,13 +26,13 @@ OFILES=\
 	str_array.$O \
 	symbol.$O \
 	version.$O \
-#gawk/*.y
+#gawk/*.y \
 	awkgram.$O \
 	command.$O \
-#gawk/missing.d
+#gawk/missing.d \
     setenv.$O \
     getaddrinfo.$O \
-#gawk/support
+#gawk/support \
     dfa.$O \
     getopt.$O \
     getopt1.$O \
@@ -50,13 +50,7 @@ HFILES=\
 	interpret.h \
     mbsupport.h \
     nonposix.h \
-    protos.h \
-    y.tab.h
-
-YFILES=\
-	awkgram.y \
-	command.y \
-
+    protos.h
 
 BIN=/$objtype/bin
 
@@ -64,19 +58,12 @@ BIN=/$objtype/bin
 
 CC=pcc
 LD=pcc
-YFLAGS=-S -d -v
 CFLAGS=-c -I. -I./missing_d -I./support -DPLAN9 -DGAWK -DUTF\
 	-D_POSIX_SOURCE -D_SUSV2_SOURCE -D_C99_SNPRINTF_EXTENSION -D_BSD_EXTENSION \
 	-D_REENTRANT_SOURCE -D_EXPERIMENTAL_SOURCE -DHAVE_SOCK_OPTS -DHAVE_CONFIG_H \
 	-DGETGROUPS_NOT_STANDARD -DHAVE_STDINT_H -DHAVE_MKTIME \
 	-DHAVE_STDBOOL_H 
 
-
-y.tab.h awkgram.c:  awkgram.y
-    $YACC -o awkgram.c $YFLAGS $prereq
-    
-command.c: command.y
-    $YACC -o command.c $YFLAGS $prereq
 
 %.$O: %.c
 	$CC $CFLAGS $stem.c
@@ -98,8 +85,7 @@ install:V:
 	cp doc/igawk.1 /sys/man/1gnu/igawk
 
 clean:V:
-    rm -f *.[$OS] [$OS].out [$OS].maketab y.tab.? y.debug\
-    y.output $TARG
+    rm -f *.[$OS] [$OS].out
 
 nuke:V:
     rm -f /$objtype/bin/gawk
